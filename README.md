@@ -1,6 +1,66 @@
-# Ember-computed-style
+# Ember computed-style
 
-This README outlines the details of collaborating on this Ember addon.
+![Ember Computed Style](/data/emberComputedStyleLogo.png)
+
+Provides a simple computed property mixin for Ember Compontents to compute styles 
+from objects similar how it can be done in React.
+
+# Usage
+
+Take this example code:
+
+```javascript
+const { computed } = Ember;
+export default Ember.Component.extend({
+  style: computed.style('styleProperties'),
+
+  styleProperties: {
+    position: 'absolute',
+    top: 10,
+    left: 50
+  },
+
+  attributeBindings: ['style'],
+
+});
+```
+
+This will set style to a CSS style string computed from the returned object from
+the handler function. The value of this will be correctly encoded as:
+
+```css
+  position: absolute; top: 10px; left: 50px;
+```
+
+Properties which are not designated to have a unit value will be left as is, 
+otherwise `px` unit will be added if they're a Number.
+
+You can also compute it from multiple property bindings, if each of them return
+an object keyed on the CSS property name:
+
+```javascript
+const { computed } = Ember;
+
+export default Ember.Component.extend({
+  style: computed.style('horizontalPosition', 'verticalPosition', 'positionType'),
+
+  positionType: {
+    position: 'absolute'
+  },
+  
+  verticalPosition: computed('targetRect', function() {
+    const targetRect = this.get('targetRect');
+
+    return {top: targetRect.top + 10};
+  }),
+
+  horizontalPosition: computed(function() {
+    return {left: 50};
+  }),
+
+  attributeBindings: ['style'],
+});
+```
 
 ## Installation
 
