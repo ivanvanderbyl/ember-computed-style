@@ -1,5 +1,3 @@
-# Ember computed-style
-
 ![Ember Computed Style](/data/emberComputedStyleLogo.png)
 
 Provides a simple computed property mixin for Ember Compontents to compute styles 
