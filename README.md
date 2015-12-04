@@ -8,9 +8,10 @@ from objects similar how it can be done in React.
 Take this example code:
 
 ```javascript
-const { computed } = Ember;
+import computedStyle from 'ember-computed-style';
+
 export default Ember.Component.extend({
-  style: computed.style('styleProperties'),
+  style: computedStyle('styleProperties'),
 
   styleProperties: {
     position: 'absolute',
@@ -37,7 +38,7 @@ You can also compute it from multiple property bindings, if each of them return
 an object keyed on the CSS property name:
 
 ```javascript
-const { computed } = Ember;
+import computedStyle from 'ember-computed-style';
 
 export default Ember.Component.extend({
   style: computed.style('horizontalPosition', 'verticalPosition', 'positionType'),
@@ -46,7 +47,7 @@ export default Ember.Component.extend({
     position: 'absolute'
   },
   
-  verticalPosition: computed('targetRect', function() {
+  verticalPosition: computedStyle('targetRect', function() {
     const targetRect = this.get('targetRect');
 
     return {top: targetRect.top + 10};
@@ -60,7 +61,13 @@ export default Ember.Component.extend({
 });
 ```
 
-## Installation
+# Installing
+
+```
+ember install ember-computed-style
+```
+
+## Developing
 
 * `git clone` this repository
 * `npm install`
