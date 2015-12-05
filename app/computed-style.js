@@ -26,6 +26,7 @@ function generateComputedWithProperties(macro) {
   };
 }
 
+// Lifted from React
 const isUnitlessNumber = {
   animationIterationCount: true,
   boxFlex: true,
@@ -108,12 +109,18 @@ function objectToStyleString(object) {
 /**
  * Computes a style string from the value of bound properties.
  */
-export default generateComputedWithProperties(function(properties) {
-  let styleString = '';
+export default generateComputedWithProperties(function computedStyleProperties(properties) {
+  let styleStrings = [];
 
   Object.keys(properties).forEach((dependentKey) => {
-    styleString += objectToStyleString(properties[dependentKey]) + ';';
+    styleStrings.push(objectToStyleString(properties[dependentKey]));
   });
+
+  let styleString = styleStrings.join(';');
+
+  if (styleString.charAt(styleString.length-1) !== ';') {
+    styleString+=';';
+  }
 
   return new SafeString(styleString);
 });

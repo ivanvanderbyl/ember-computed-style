@@ -38,17 +38,17 @@ const TestComponent = Ember.Object.extend({
 test('it computes a valid style string', function(assert) {
   let subject = TestComponent.create();
 
-  assert.equal(subject.get('style'), 'left:50px;top:130px;position:absolute;');
+  assert.equal('' + subject.get('style'), 'left:50px;top:130px;position:absolute;');
 });
 
 test('it recomputes when a dependent key changes', function (assert) {
   let subject = TestComponent.create();
 
-  assert.equal(subject.get('style'), 'left:50px;top:130px;position:absolute;');
+  assert.equal(subject.get('style').toString(), 'left:50px;top:130px;position:absolute;');
 
   subject.set('targetRect', { top: 0 });
 
-  assert.equal(subject.get('style'), 'left:50px;top:10px;position:absolute;');
+  assert.equal(subject.get('style').toString(), 'left:50px;top:10px;position:absolute;');
 });
 
 test('unitless number handling', function(assert) {
