@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import layout from '../templates/components/my-chart';
-import computedStyle from '../computed-style';
+import computedStyle from 'ember-computed-style';
 
 const {computed} = Ember;
 

@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import computedStyle from '../../computed-style';
+import computedStyle from 'ember-computed-style';
 import Ember from 'ember';
 const { computed } = Ember;
 

@@ -109,7 +109,7 @@ function objectToStyleString(object) {
 /**
  * Computes a style string from the value of bound properties.
  */
-export default generateComputedWithProperties(function computedStyleProperties(properties) {
+export var computedStyle = generateComputedWithProperties(function computedStyleProperties(properties) {
   let styleStrings = [];
 
   Object.keys(properties).forEach((dependentKey) => {
