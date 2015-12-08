@@ -58,7 +58,7 @@ test('unitless number handling', function(assert) {
       right: 32,
     }
   });
-  assert.equal(subject.get('style'), 'left:50px;top:130px;flex:1;right:32px;');
+  assert.equal(subject.get('style').toString(), 'left:50px;top:130px;flex:1;right:32px;');
 });
 
 test('property naming', function(assert) {
@@ -67,5 +67,14 @@ test('property naming', function(assert) {
       fontWeight: 'bold'
     }
   });
-  assert.equal(subject.get('style'), 'font-weight:bold;');
+  assert.equal(subject.get('style').toString(), 'font-weight:bold;');
+});
+
+test('null values do not produce a anything', function(assert) {
+  let subject = TestTypoComponent.create({
+    typography: {
+      fontWeight: null
+    }
+  });
+  assert.equal(subject.get('style').toString(), '');
 });

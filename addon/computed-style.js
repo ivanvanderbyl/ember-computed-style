@@ -102,8 +102,9 @@ function transformStyleValue(name, value) {
 function objectToStyleString(object) {
   return Object.keys(object).map((name) => {
     let value = transformStyleValue(name, object[name]);
+    if (isEmpty(value)) { return null; }
     return `${ dasherize(name) }:${ value }`;
-  }).join(';');
+  }).filter((rule) => rule !== null).join(';');
 }
 
 /**
@@ -118,7 +119,7 @@ export var computedStyle = generateComputedWithProperties(function computedStyle
 
   let styleString = styleStrings.join(';');
 
-  if (styleString.charAt(styleString.length-1) !== ';') {
+  if (styleString.length > 1 && styleString.charAt(styleString.length-1) !== ';') {
     styleString+=';';
   }
 
