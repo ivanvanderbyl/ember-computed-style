@@ -1,7 +1,7 @@
 {
   "name": "ember-computed-style",
   "version": "0.1.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Provides a simple computed property for Ember Compontents which emits CSS properties",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,11 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "ivanvanderbyl/ember-computed-style",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Ivan Vanderbyl",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -38,7 +38,10 @@
     "ember-try": "~0.0.8"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "style",
+    "computed",
+    "css"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.5"
