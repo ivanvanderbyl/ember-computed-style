@@ -41,7 +41,7 @@ an object keyed on the CSS property name:
 import computedStyle from 'ember-computed-style';
 
 export default Ember.Component.extend({
-  style: computed.style('horizontalPosition', 'verticalPosition', 'positionType'),
+  style: computedStyle('horizontalPosition', 'verticalPosition', 'positionType'),
 
   positionType: {
     position: 'absolute'
