@@ -1,6 +1,6 @@
 ![Ember Computed Style](/data/emberComputedStyleLogo.png)
 
-Provides a simple computed property mixin for Ember Compontents to compute styles 
+Provides a simple computed property mixin for Ember Components to compute styles 
 from objects similar how it can be done in React.
 
 # Usage
