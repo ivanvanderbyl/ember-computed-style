@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 const { isEmpty, get, computed } = Ember;
-const { dasherize } = Ember.String;
-const { SafeString } = Ember.Handlebars;
+const { dasherize, htmlSafe } = Ember.String;
 
 /**
  * Lifted from Ember Metal Computed Macros
@@ -123,5 +122,12 @@ export var computedStyle = generateComputedWithProperties(function computedStyle
     styleString+=';';
   }
 
-  return new SafeString(styleString);
+  if (htmlSafe) {
+    return htmlSafe(styleString);
+  } else {
+    // backwards compatibility for method deprecated since
+    // ember v2.8.0
+    return new Ember.Handlebars.SafeString(styleString);
+  }
+
 });
