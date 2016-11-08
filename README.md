@@ -1,3 +1,5 @@
+# ember-computed-style [![Build Status](https://travis-ci.org/ivanvanderbyl/ember-computed-style.svg?branch=master)](https://travis-ci.org/ivanvanderbyl/ember-computed-style) [![Ember Observer Score](https://emberobserver.com/badges/ember-computed-style.svg)](https://emberobserver.com/addons/ember-computed-style)
+
 ![Ember Computed Style](/data/emberComputedStyleLogo.png)
 
 Provides a simple computed property mixin for Ember Components to compute styles 
