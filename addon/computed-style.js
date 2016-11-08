@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
-const { isEmpty, get, computed } = Ember;
+const { isEmpty, get, computed, String: { htmlSafe } } = Ember;
 const { dasherize } = Ember.String;
-const { SafeString } = Ember.Handlebars;
+const { keys } = Object;
 
 /**
  * Lifted from Ember Metal Computed Macros
@@ -76,10 +76,10 @@ function prefixKey(prefix, key) {
  */
 var prefixes = ['Webkit', 'ms', 'Moz', 'O'];
 
-// Using Object.keys here, or else the vanilla for-in loop makes IE8 go into an
+// Using keys here, or else the vanilla for-in loop makes IE8 go into an
 // infinite loop, because it iterates over the newly added props too.
-Object.keys(isUnitlessNumber).forEach(function(prop) {
-  prefixes.forEach(function(prefix) {
+keys(isUnitlessNumber).forEach((prop) => {
+  prefixes.forEach((prefix) => {
     isUnitlessNumber[prefixKey(prefix, prop)] = isUnitlessNumber[prop];
   });
 });
@@ -100,7 +100,7 @@ function transformStyleValue(name, value) {
 }
 
 function objectToStyleString(object) {
-  return Object.keys(object).map((name) => {
+  return keys(object).map((name) => {
     let value = transformStyleValue(name, object[name]);
     if (isEmpty(value)) { return null; }
     return `${ dasherize(name) }:${ value }`;
@@ -110,10 +110,10 @@ function objectToStyleString(object) {
 /**
  * Computes a style string from the value of bound properties.
  */
-export var computedStyle = generateComputedWithProperties(function computedStyleProperties(properties) {
+export const computedStyle = generateComputedWithProperties(function computedStyleProperties(properties) {
   let styleStrings = [];
 
-  Object.keys(properties).forEach((dependentKey) => {
+  keys(properties).forEach((dependentKey) => {
     styleStrings.push(objectToStyleString(properties[dependentKey]));
   });
 
@@ -123,5 +123,5 @@ export var computedStyle = generateComputedWithProperties(function computedStyle
     styleString+=';';
   }
 
-  return new SafeString(styleString);
+  return htmlSafe(styleString);
 });
