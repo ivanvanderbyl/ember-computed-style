@@ -1,7 +1,7 @@
 {
   "name": "ember-computed-style",
-  "version": "0.0.0",
-  "description": "Provides computed helpers for computing style attrs based on simple objects",
+  "version": "0.1.2",
+  "description": "Provides a simple computed property for Ember Compontents which emits CSS properties",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "https://github.com/ivanvanderbyl/ember-computed-style",
+  "repository": "ivanvanderbyl/ember-computed-style",
   "engines": {
     "node": ">= 0.12.0"
   },
@@ -41,7 +41,10 @@
     "loader.js": "^4.0.10"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "style",
+    "computed",
+    "css"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.7"
