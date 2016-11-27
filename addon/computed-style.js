@@ -88,10 +88,10 @@ function transformStyleValue(name, value) {
   if (isEmpty(value)) { return ''; }
 
   const isNonNumeric = isNaN(value);
-  let valueTransformed = '';
+  let valueTransformed = value;
   if (isNonNumeric || value === 0 ||
       isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name]) {
-    valueTransformed = `${value}`; // cast to string
+    return `${value}`; // cast to string
   }
 
   if (typeof value === 'string') {
