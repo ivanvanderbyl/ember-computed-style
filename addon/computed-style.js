@@ -57,7 +57,7 @@ const isUnitlessNumber = {
   stopOpacity: true,
   strokeDashoffset: true,
   strokeOpacity: true,
-  strokeWidth: true,
+  strokeWidth: true
 };
 
 /**
