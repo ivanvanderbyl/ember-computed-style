@@ -9,16 +9,16 @@ const { keys } = Object;
  */
 
 function getProperties(self, propertyNames) {
-  var ret = {};
-  for (var i = 0; i < propertyNames.length; i++) {
+  const ret = {};
+  for (let i = 0; i < propertyNames.length; i++) {
     ret[propertyNames[i]] = get(self, propertyNames[i]);
   }
   return ret;
 }
 
 function generateComputedWithProperties(macro) {
-  return function(...properties) {
-    var computedFunc = computed(function() {
+  return function (...properties) {
+    const computedFunc = computed(function () {
       return macro.apply(this, [getProperties(this, properties)]);
     });
 
@@ -74,7 +74,7 @@ function prefixKey(prefix, key) {
  * Support style names that may come passed in prefixed by adding permutations
  * of vendor prefixes.
  */
-var prefixes = ['Webkit', 'ms', 'Moz', 'O'];
+const prefixes = ['Webkit', 'ms', 'Moz', 'O'];
 
 // Using keys here, or else the vanilla for-in loop makes IE8 go into an
 // infinite loop, because it iterates over the newly added props too.
@@ -87,41 +87,46 @@ keys(isUnitlessNumber).forEach((prop) => {
 function transformStyleValue(name, value) {
   if (isEmpty(value)) { return ''; }
 
-  let isNonNumeric = isNaN(value);
+  const isNonNumeric = isNaN(value);
+  let valueTransformed = '';
   if (isNonNumeric || value === 0 ||
       isUnitlessNumber.hasOwnProperty(name) && isUnitlessNumber[name]) {
-    return '' + value; // cast to string
+    valueTransformed = `${value}`; // cast to string
   }
 
   if (typeof value === 'string') {
-    value = value.trim();
+    valueTransformed = value.trim();
   }
-  return value + 'px';
+  return `${valueTransformed}px`;
 }
 
 function objectToStyleString(object) {
   return keys(object).map((name) => {
-    let value = transformStyleValue(name, object[name]);
+    const value = transformStyleValue(name, object[name]);
     if (isEmpty(value)) { return null; }
-    return `${ dasherize(name) }:${ value }`;
-  }).filter((rule) => rule !== null).join(';');
+    return `${dasherize(name)}:${value}`;
+  })
+  .filter((rule) => rule !== null)
+  .join(';');
 }
 
 /**
  * Computes a style string from the value of bound properties.
  */
-export const computedStyle = generateComputedWithProperties(function computedStyleProperties(properties) {
-  let styleStrings = [];
+export const computedStyle = generateComputedWithProperties(
+  function computedStyleProperties(properties) {
+    const styleStrings = [];
 
-  keys(properties).forEach((dependentKey) => {
-    styleStrings.push(objectToStyleString(properties[dependentKey]));
-  });
+    keys(properties).forEach((dependentKey) => {
+      styleStrings.push(objectToStyleString(properties[dependentKey]));
+    });
 
-  let styleString = styleStrings.join(';');
+    let styleString = styleStrings.join(';');
 
-  if (styleString.length > 1 && styleString.charAt(styleString.length-1) !== ';') {
-    styleString+=';';
+    if (styleString.length > 1 && styleString.charAt(styleString.length - 1) !== ';') {
+      styleString += ';';
+    }
+
+    return htmlSafe(styleString);
   }
-
-  return htmlSafe(styleString);
-});
+);
