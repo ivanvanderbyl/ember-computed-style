@@ -49,7 +49,7 @@ export default Ember.Component.extend({
     position: 'absolute'
   },
   
-  verticalPosition: computedStyle('targetRect', function() {
+  verticalPosition: computed('targetRect', function() {
     const targetRect = this.get('targetRect');
 
     return {top: targetRect.top + 10};
