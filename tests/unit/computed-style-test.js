@@ -16,7 +16,7 @@ const TestComponent = Ember.Object.extend({
   style: computedStyle('horizontalPosition', 'verticalPosition', 'positionType'),
 
   targetRect: {
-    top: 120,
+    top: 120
   },
 
   positionType: {
@@ -31,7 +31,7 @@ const TestComponent = Ember.Object.extend({
 
   horizontalPosition: computed(function() {
     return {left: 50};
-  }),
+  })
 
 });
 
@@ -55,7 +55,7 @@ test('unitless number handling', function(assert) {
   let subject = TestComponent.create({
     positionType: {
       flex: 1,
-      right: 32,
+      right: 32
     }
   });
   assert.equal(subject.get('style').toString(), 'left:50px;top:130px;flex:1;right:32px;');
