@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import layout from '../templates/components/my-chart';
 import computedStyle from 'ember-computed-style';
 
-const {computed} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   layout: layout,
 
   classNames: ['my-chart'],
@@ -13,9 +12,9 @@ export default Ember.Component.extend({
 
   style: computedStyle('typography', 'activeStyles'),
 
-  typography: {
+  typography: Object.freeze({
     fontWeight: 'bold'
-  },
+  }),
 
   activeStyles: computed('isActive', function() {
     const isActive = this.get('isActive');

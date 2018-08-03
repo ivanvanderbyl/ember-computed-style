@@ -1,27 +1,26 @@
 import { module, test } from 'qunit';
 import computedStyle from 'ember-computed-style';
-import Ember from 'ember';
-const { computed } = Ember;
+import EmberObject, { computed } from '@ember/object';
 
 module('Unit | Computed Style');
 
-const TestTypoComponent = Ember.Object.extend({
+const TestTypoComponent = EmberObject.extend({
   style: computedStyle('typography'),
-  typography: {
+  typography: Object.freeze({
     fontWeight: 'bold'
-  }
+  })
 });
 
-const TestComponent = Ember.Object.extend({
+const TestComponent = EmberObject.extend({
   style: computedStyle('horizontalPosition', 'verticalPosition', 'positionType'),
 
-  targetRect: {
+  targetRect: Object.freeze({
     top: 120
-  },
+  }),
 
-  positionType: {
+  positionType: Object.freeze({
     position: 'absolute'
-  },
+  }),
 
   verticalPosition: computed('targetRect', function() {
     const targetRect = this.get('targetRect');

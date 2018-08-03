@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { computed, get } from '@ember/object';
+import { htmlSafe, dasherize } from '@ember/string';
 
-const { isEmpty, get, computed, String: { htmlSafe } } = Ember;
-const { dasherize } = Ember.String;
 const { keys } = Object;
 
 /**
