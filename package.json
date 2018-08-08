@@ -1,6 +1,6 @@
 {
   "name": "ember-computed-style",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Provides a simple computed property for Ember Compontents which emits CSS properties",
   "keywords": [
     "ember-addon",
