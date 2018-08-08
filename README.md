@@ -65,9 +65,7 @@ export default Ember.Component.extend({
 
 ### Installation
 
-* `git clone <repository-url>`
-* `cd my-addon`
-* `npm install`
+* `ember install ember-computed-style`
 
 ### Linting
 
